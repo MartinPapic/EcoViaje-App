@@ -9,7 +9,7 @@ import com.example.appecoviaje.ui.theme.AppEcoViajeTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 
-import com.ecoviaje.app.ui.CatalogoScreen
+import com.example.appecoviaje.ui.AppNavigation
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     // ¡Llamamos a nuestra pantalla principal!
-                    CatalogoScreen()
+                    AppNavigation()
                 }
             }
         }
