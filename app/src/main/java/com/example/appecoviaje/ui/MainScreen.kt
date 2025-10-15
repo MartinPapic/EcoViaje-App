@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.appecoviaje.theme.AppEcoViajeTheme
+import com.example.appecoviaje.ui.theme.AppEcoViajeTheme
 
 @Composable
 fun MainScreen() {
