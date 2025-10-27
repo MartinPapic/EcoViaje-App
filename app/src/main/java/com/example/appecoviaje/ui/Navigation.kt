@@ -38,7 +38,14 @@ fun AppNavigation() {
             )
         }
         composable("main") {
-            MainScreen()
+            MainScreen(
+                onNavigateToTripPlanning = {
+                    navController.navigate("trip_planning")
+                }
+            )
+        }
+        composable("trip_planning") {
+            TripPlanningScreen()
         }
     }
 }

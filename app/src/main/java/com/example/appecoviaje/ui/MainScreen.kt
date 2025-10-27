@@ -31,7 +31,10 @@ import com.example.appecoviaje.viewmodel.CatalogoViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(viewModel: CatalogoViewModel = viewModel()) {
+fun MainScreen(
+    viewModel: CatalogoViewModel = viewModel(),
+    onNavigateToTripPlanning: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -60,7 +63,7 @@ fun MainScreen(viewModel: CatalogoViewModel = viewModel()) {
         ) {
             item {
                 Row {
-                    Button(onClick = { /*TODO*/ }) {
+                    Button(onClick = onNavigateToTripPlanning) {
                         Text(text = "Planificar Viaje")
                     }
                     Spacer(modifier = Modifier.weight(1f))
@@ -81,6 +84,6 @@ fun MainScreen(viewModel: CatalogoViewModel = viewModel()) {
 @Composable
 fun MainScreenPreview() {
     AppEcoViajeTheme {
-        MainScreen()
+        MainScreen(onNavigateToTripPlanning = {})
     }
 }
