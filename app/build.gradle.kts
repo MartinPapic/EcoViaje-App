@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.navigation:navigation-compose:2.8.2")
     implementation("androidx.core:core-ktx:1.12.0") // Or the latest version
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") // Or the latest version
     implementation("androidx.compose.material3:material3")
