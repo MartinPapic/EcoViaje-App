@@ -9,15 +9,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.appecoviaje.ui.theme.AppEcoViajeTheme
-import com.example.appecoviaje.viewmodel.LoginViewModel
-import com.example.appecoviaje.viewmodel.LoginUiState
+import com.example.appecoviaje.viewmodel.RegistrationViewModel
+import com.example.appecoviaje.viewmodel.RegistrationUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(viewModel: LoginViewModel = viewModel(), onLoginSuccess: () -> Unit, onNavigateToRegister: () -> Unit) {
+fun RegistrationScreen(viewModel: RegistrationViewModel = viewModel(), onRegistrationSuccess: () -> Unit) {
+    val username by viewModel.username.collectAsState()
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
-    val loginState by viewModel.loginState.collectAsState()
+    val registrationState by viewModel.registrationState.collectAsState()
 
     var showError by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
@@ -27,7 +28,13 @@ fun LoginScreen(viewModel: LoginViewModel = viewModel(), onLoginSuccess: () -> U
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Login")
+        Text(text = "Register")
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            value = username,
+            onValueChange = { viewModel.onUsernameChange(it) },
+            label = { Text("Username") }
+        )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
             value = email,
@@ -47,22 +54,18 @@ fun LoginScreen(viewModel: LoginViewModel = viewModel(), onLoginSuccess: () -> U
             Spacer(modifier = Modifier.height(8.dp))
         }
 
-        Button(onClick = { viewModel.login() }) {
-            Text(text = "Login")
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        TextButton(onClick = { onNavigateToRegister() }) {
-            Text(text = "Don't have an account? Register")
+        Button(onClick = { viewModel.register() }) {
+            Text(text = "Register")
         }
     }
 
-    LaunchedEffect(loginState) {
-        when (val state = loginState) {
-            is LoginUiState.Success -> {
+    LaunchedEffect(registrationState) {
+        when (val state = registrationState) {
+            is RegistrationUiState.Success -> {
                 showError = false
-                onLoginSuccess()
+                onRegistrationSuccess()
             }
-            is LoginUiState.Error -> {
+            is RegistrationUiState.Error -> {
                 errorMessage = state.message
                 showError = true
             }
@@ -75,8 +78,8 @@ fun LoginScreen(viewModel: LoginViewModel = viewModel(), onLoginSuccess: () -> U
 
 @Preview(showBackground = true)
 @Composable
-fun LoginScreenPreview() {
+fun RegistrationScreenPreview() {
     AppEcoViajeTheme {
-        LoginScreen(onLoginSuccess = {}, onNavigateToRegister = {})
+        RegistrationScreen(onRegistrationSuccess = {})
     }
 }

@@ -1,10 +1,13 @@
 package com.example.appecoviaje.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 sealed interface LoginUiState {
     object Idle : LoginUiState
@@ -33,16 +36,22 @@ class LoginViewModel : ViewModel() {
     }
 
     fun login() {
-        // Reset state
-        _loginState.update { LoginUiState.Idle }
+        viewModelScope.launch {
+            // Reset state and show loading
+            _loginState.update { LoginUiState.Loading }
+            delay(1000) // Simulate network delay
 
-        if (_email.value.isBlank() || _password.value.isBlank()) {
-            _loginState.update { LoginUiState.Error("Email and password cannot be empty.") }
-            return
+            if (_email.value.isBlank() || _password.value.isBlank()) {
+                _loginState.update { LoginUiState.Error("Email and password cannot be empty.") }
+                return@launch
+            }
+
+            // Simulate a successful login with a hardcoded user
+            if (_email.value == "a@a.a" && _password.value == "a") {
+                _loginState.update { LoginUiState.Success }
+            } else {
+                _loginState.update { LoginUiState.Error("Invalid credentials.") }
+            }
         }
-
-        // Here you would typically make a network call.
-        // For this example, we'll just simulate a successful login.
-        _loginState.update { LoginUiState.Success }
     }
 }

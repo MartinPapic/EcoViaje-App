@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.appecoviaje.ui.LoginScreen
 import com.example.appecoviaje.ui.MainScreen
+import com.example.appecoviaje.ui.RegistrationScreen
 
 @Composable
 fun AppNavigation() {
@@ -16,6 +17,20 @@ fun AppNavigation() {
                 onLoginSuccess = {
                     navController.navigate("main") {
                         popUpTo("login") {
+                            inclusive = true
+                        }
+                    }
+                },
+                onNavigateToRegister = {
+                    navController.navigate("register")
+                }
+            )
+        }
+        composable("register") {
+            RegistrationScreen(
+                onRegistrationSuccess = {
+                    navController.navigate("login") {
+                        popUpTo("register") {
                             inclusive = true
                         }
                     }
