@@ -1,4 +1,4 @@
-package com.ecoviaje.app.model
+package com.example.appecoviaje.model
 
 // Clase abstracta que define el contrato base para todos los viajes (Herencia y Abstracción)
 abstract class Viaje(

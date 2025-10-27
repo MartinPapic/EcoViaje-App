@@ -1,10 +1,12 @@
-package com.ecoviaje.app.viewmodel
+package com.example.appecoviaje.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import com.ecoviaje.app.model.* class `CatalogoViewModel.kt` : ViewModel() {
+import com.example.appecoviaje.model.*
+
+class CatalogoViewModel : ViewModel() {
 
     // Lista de viajes observables por la UI (View)
     var viajes by mutableStateOf(getInventarioInicial())
