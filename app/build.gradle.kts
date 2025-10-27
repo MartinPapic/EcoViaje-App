@@ -43,12 +43,12 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0") // Or the latest version
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") // Or the latest version
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation(libs.androidx.core.ktx.v1120) // Or the latest version
+    implementation(libs.androidx.lifecycle.runtime.ktx.v262) // Or the latest version
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     // Dependencias locales
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
